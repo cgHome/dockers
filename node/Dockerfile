@@ -2,6 +2,9 @@ FROM iron/node:4.2.6-dev
 
 MAINTAINER Chris.Gross <cgHome@gmx.net>
 
+# Add app account
+RUN addgroup -g 999 app && adduser -D  -G app -s /bin/false -u 999 app
+
 # Add packages
 RUN apk --no-cache add \
         git \
@@ -9,11 +12,8 @@ RUN apk --no-cache add \
         g++ \
         python
         
-# Setting environment variables
-ENV APP /home/app
-ENV LOG /home/log
+ENV HOME=/home/app
 
-# Create directorys
-RUN mkdir $APP $LOG 
-RUN cd $APP
-WORKDIR $APP
+USER app
+WORKDIR $HOME/
+# RUN npm install
