@@ -12,7 +12,7 @@ RUN apk --no-cache add \
         g++ \
         python
         
-ENV HOME=/home/app
+ENV HOME=/home
 
 USER app
 WORKDIR $HOME/
