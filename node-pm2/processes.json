@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "api",
+            "script": "echo \"Error: no script defined\" && exit 1",
+            "merge_logs": true
+        }
+    ]
+}

@@ -1,11 +1,10 @@
-FROM iron/node:4.2.6-dev
+FROM mhart/alpine-node:4
 
 MAINTAINER Chris.Gross <cgHome@gmx.net>
 
-# Add app account
-RUN addgroup -g 999 app && adduser -D  -G app -s /bin/false -u 999 app
-
-USER root
+ENV HOME=/home
+WORKDIR $HOME/
+VOLUME ["${HOME}"]
 
 # Add packages
 RUN apk --no-cache add \
@@ -14,6 +13,5 @@ RUN apk --no-cache add \
         g++ \
         python
         
-ENV HOME=/home
-
-WORKDIR $HOME/
+EXPOSE 3000
+CMD ["node", "index.js"]
