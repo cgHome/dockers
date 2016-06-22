@@ -4,7 +4,7 @@ MAINTAINER Chris.Gross <cgHome@gmx.net>
 
 ENV HOME=/home
 WORKDIR $HOME/
-VOLUME ["${HOME}"]
+VOLUME ["${HOME}", "${HOME}/service"]
 
 # Add packages
 RUN apk --no-cache add \
