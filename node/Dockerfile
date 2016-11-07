@@ -4,7 +4,6 @@ MAINTAINER Chris.Gross <cgHome@gmx.net>
 
 ENV HOME=/home
 WORKDIR $HOME/
-VOLUME ["${HOME}", "${HOME}/service"]
 
 # Add packages
 RUN apk --no-cache add \
@@ -13,5 +12,8 @@ RUN apk --no-cache add \
         g++ \
         python
         
+VOLUME ["${HOME}", "${HOME}/service"]
+
 EXPOSE 3000
+
 CMD ["node", "index.js"]
