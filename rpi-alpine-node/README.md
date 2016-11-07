@@ -2,7 +2,7 @@
 
 ### Usage
 ```sh
-docker run -it --rm cghome/rpi-alpine-node
+docker run -ti --rm cghome/rpi-alpine-node
 ```
 
 ### Building this image
