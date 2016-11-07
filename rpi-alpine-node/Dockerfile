@@ -8,7 +8,7 @@ MAINTAINER Chris Gross <cgHome@gmx.net>
 
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cache \
+        && apk add --no-cache \
         bash \
         bash-completion \ 
         nano \
