@@ -6,14 +6,13 @@ MAINTAINER Chris Gross <cgHome@gmx.net>
 # Install packages                               #
 ##################################################
 
-RUN apk update \
-    && apk upgrade \
-        && apk add --no-cache \
+RUN apk add --no-cache --virtual .build-deps \
         bash \
         bash-completion \ 
         nano \
         git \
-        nodejs
+        nodejs \
+    && apk del .build-deps
 
 ##################################################
 # Start                                          #
