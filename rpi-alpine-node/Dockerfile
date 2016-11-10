@@ -11,18 +11,19 @@ RUN set -x \
         git \
         nodejs 
 
-# Add app-user
+# Add docker-user
 RUN delgroup ping \  
-    && addgroup -g 999 app \ 
-    && adduser -D -G app -s /bin/false -u 999 app
+    && addgroup -g 999 docker \ 
+    && adduser -D -h /home -s /bin/false -G docker -u 999 docker
 
 # Change the working directory.
-WORKDIR /home/app
+WORKDIR /home
+RUN chown -R docker /home
 
 # Start
-USER app
+USER docker
 
-VOLUME /home/app
+VOLUME /home
 EXPOSE 3000
 
-CMD [""]
+CMD ["node", "index.js"]
