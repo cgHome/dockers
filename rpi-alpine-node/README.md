@@ -1,5 +1,3 @@
-# rpi-alpine-node
-
 ## Usage
 
 ```sh

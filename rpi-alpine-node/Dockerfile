@@ -3,8 +3,7 @@ FROM hypriot/rpi-alpine-scratch:v3.4
 MAINTAINER Chris Gross <cgHome@gmx.net>
 
 # Install dependencies 
-RUN set -x \ 
-    && apk --no-cache add \
+RUN apk --no-cache add \
         bash \
         bash-completion \
         nano \
