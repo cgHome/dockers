@@ -4,26 +4,26 @@ MAINTAINER Chris Gross <cgHome@gmx.net>
 
 # Install dependencies 
 RUN set -x \ 
-    && apk add --no-cache \
+    && apk --no-cache add \
         bash \
         bash-completion \
         nano \
         git \
         nodejs 
 
-# Add docker-user
-RUN delgroup ping \  
-    && addgroup -g 999 docker \ 
-    && adduser -D -h /home -s /bin/false -G docker -u 999 docker
+# Add app-user
+ENV HOME=/home/app
 
-# Change the working directory.
-WORKDIR /home
-RUN chown -R docker /home
+RUN delgroup ping \
+    && addgroup -g 1000 app \ 
+    && adduser -D -h $HOME -s /bin/false -G app -u 1000 app \
+    && chown -R app:app $HOME
 
 # Start
-USER docker
+USER app
+WORKDIR $HOME/
 
-VOLUME /home
 EXPOSE 3000
+VOLUME [$HOME]
 
 CMD ["node", "index.js"]
