@@ -18,11 +18,12 @@ RUN delgroup ping \
     && adduser -D -h $HOME -s /bin/false -G app -u 1000 app \
     && chown -R app:app $HOME
 
+WORKDIR $HOME
+
 # Start
 USER app
-WORKDIR $HOME/
 
 EXPOSE 3000
-VOLUME [$HOME]
+VOLUME $HOME
 
 CMD ["node", "index.js"]
