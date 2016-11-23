@@ -6,16 +6,23 @@ MAINTAINER Chris Gross <cgHome@gmx.net>
 RUN apk --no-cache add \
         bash \
         bash-completion \
+        su-exec \
         nano \
         git \
         nodejs 
 
+RUN chmod u+s /sbin/su-exec
+
 # Add app-user
 ENV HOME=/home/app
 
+# (Set env HOST_GID = `id -g $USER` / HOST_UID = `id -u $USER`)
+ENV HOST_GID=${HOST_GID:-1000}
+ENV HOST_UID=${HOST_UID:-1000}
+
 RUN delgroup ping \
-    && addgroup -g 1000 app \ 
-    && adduser -D -h $HOME -s /bin/false -G app -u 1000 app \
+    && addgroup -g $HOST_GID app \ 
+    && adduser -D -h $HOME -s /bin/false -G app -u $HOST_UID app \
     && chown -R app:app $HOME
 
 WORKDIR $HOME
