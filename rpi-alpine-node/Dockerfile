@@ -2,7 +2,10 @@ FROM hypriot/rpi-alpine-scratch:v3.4
 
 MAINTAINER Chris Gross <cgHome@gmx.net>
 
-# Install dependencies 
+##################################################
+# Install dependencies                           #
+##################################################
+ 
 RUN apk --no-cache add \
         bash \
         bash-completion \
@@ -11,10 +14,11 @@ RUN apk --no-cache add \
         git \
         nodejs 
 
+# Fix see: https://github.com/ncopa/su-exec/issues/2 
 RUN chmod u+s /sbin/su-exec
 
 # Add app-user
-ENV HOME=/home/app
+ENV HOME=/home
 
 # (Set env HOST_GID = `id -g $USER` / HOST_UID = `id -u $USER`)
 ENV HOST_GID=${HOST_GID:-1000}
@@ -27,7 +31,10 @@ RUN delgroup ping \
 
 WORKDIR $HOME
 
-# Start
+##################################################
+# Start                                          #
+##################################################
+
 USER app
 
 EXPOSE 3000
