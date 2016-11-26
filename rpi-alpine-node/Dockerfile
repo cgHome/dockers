@@ -5,6 +5,8 @@ MAINTAINER Chris Gross <cgHome@gmx.net>
 ##################################################
 # Install dependencies                           #
 ##################################################
+
+RUN alias ll='ls -alG'
  
 RUN apk --no-cache add \
         bash \
